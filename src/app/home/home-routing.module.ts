@@ -1,22 +1,34 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePage } from './home.page';
-
-/**
- * Se genera las rutas mediante una constante de tipo Route
- * como un arreglo que acepta rutas, en este caso se implementa
- * un enrutamiento simple, donde existe un path raiz y se carga
- * el componente Home
- */
+import { CertificacionesComponent } from '../certificaciones/certificaciones.component';
+import { ExperienciaComponent } from '../experiencia/experiencia.component';
+import { MisdatosComponent } from '../misdatos/misdatos.component';
+// Se declaran las rutas hijas que se cargaran al interior de Page Home
 const routes: Routes = [
   {
-    path: '', //path
-    component: HomePage, // Componente
-  }
+    path: '',
+    component: HomePage,
+    children:[
+      {
+        path:'certificaciones',
+        component: CertificacionesComponent
+      },
+      {
+        path:'experiencias',
+        component: ExperienciaComponent
+      },
+      {
+        path:'perfil',
+        component: MisdatosComponent
+      }
+    ]
+  },
+  
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)], // Al route module le asignamos como hijo las rutas de indicamos arriba
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class HomePageRoutingModule {}
